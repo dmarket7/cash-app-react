@@ -1,12 +1,22 @@
-import React, { Component } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import Home from "./Home";
+import Login from "./Login";
 
-class Routes extends Component {
-  render() {
-    return (
-      <div>Routes</div>
-    );
-  }
+function Routes() {
+
+  return (
+    <div className='routes-container'>
+      <BrowserRouter>
+        <Switch >
+          <Route exact path="/" 
+            render={() => <Login />}/>
+          <Route exact path="/transactions" 
+            render={() => <Home /> }/>
+        </Switch>
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default Routes;

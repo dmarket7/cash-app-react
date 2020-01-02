@@ -1,17 +1,19 @@
-import React from 'react';
-import { BrowserRouter } from "react-router-dom";
+import React, { useState } from 'react';
 import './App.css';
 import Routes from './Components/Routes'
 import Nav from './Components/Nav'
+import AuthContext from './Components/AuthContext';
 
 function App() {
+  const loggedIn = useState(false);
+
   return (
-    <div className="App">
-      <BrowserRouter>
+    <AuthContext.Provider value={loggedIn}>
+      <div className="App">
         <Nav />
         <Routes />
-      </BrowserRouter>
-    </div>
+      </div>
+    </AuthContext.Provider>
   );
 }
 
