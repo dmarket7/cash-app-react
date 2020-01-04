@@ -1,31 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
-import axios from 'axios';
 import { Redirect } from "react-router-dom";
 import AuthContext from "./AuthContext";
+import UserContext from "./UserContext";
 import LoginForm from "./LoginForm";
 
-const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001/";
-
 function Login() {
-  const [auth] = useContext(AuthContext);
+  const [auth, setAuth] = useContext(AuthContext);
+  const [username, setUsername] = useContext(UserContext);
 
-  // useEffect(() => {
-  //   try {
-  //     const result = axios.post(BASE_URL + "login", {
-  //       username: "dmarket7",
-  //       password: "abc123"
-  //     });
-  //     result.then(({data}) => {
-  //       const token = data.token;
-  //       localStorage.setItem("_token", token);
-  //       setAuth(true);
-  //       console.log("Auth in Login", auth)
-  //     });
-  //   } catch(err){
-  //     console.log(err);
-  //   }
-
-  // });
+  const token = localStorage.getItem("_token");
+  if(token) setAuth(true);
+  const user = localStorage.getItem("username");
+  if(user) setUsername(user);
 
   return (
     auth ? <Redirect to="/transactions" /> :

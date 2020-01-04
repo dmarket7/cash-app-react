@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from 'axios';
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import AuthContext from "./AuthContext";
+import "./LoginForm.css";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001/";
 
@@ -20,48 +21,41 @@ function LoginForm() {
       });
       const token = result.data.token;
       localStorage.setItem("_token", token);
+      localStorage.setItem("username", username);
       setAuth(true);
     } catch(err){
       console.log(err);
     }
   }
+
+  useEffect(() => {
+    console.log("Auth from LoginForm", auth);
+  }, [auth]);
   
   return (
     auth ? 
       <Redirect to="/transactions" /> 
       : 
-      <div>
-        <form onSubmit={handleSubmit}>
+      <div className="form-container">
+        <h2>Cash App!</h2>
+        <p>Sign up for $10k! (not really)</p>
+        <br></br>
+        <form onSubmit={handleSubmit} className="form-group">
+          <h1>Login</h1>
           <div>
             <label>Username</label>
-            <input onChange={e => setUsername(e.target.value)} name="username" value={username} type="text" placeholder="Username"/>
+            <input onChange={e => setUsername(e.target.value)} name="username" value={username} type="text" placeholder="Username" className="form-control"/>
           </div>
           <div>
-            <label>Password</label>
-            <input onChange={e => setPassword(e.target.value)} name="password" value={password} type="password" placeholder="Password"/>
+            <label className="my-2">Password</label>
+            <input onChange={e => setPassword(e.target.value)} name="password" value={password} type="password" placeholder="Password" className="form-control"/>
           </div>
-          <input type="submit" />
+          <input type="submit" className="btn btn-primary"/>
         </form>
+        <h5>Don't have an account?</h5>
+        <Link to="/signup"><h5>Sign Up Here</h5></Link>
       </div>
     );
   }
   
   export default LoginForm;
-    // useEffect(() => {
-    //   try {
-    //     const result = axios.post(BASE_URL + "login", {
-    //       username: "dmarket7",
-    //       password: "abc123"
-    //     });
-    //     result.then(({data}) => {
-    //       const token = data.token;
-    //       localStorage.setItem("_token", token);
-    //       console.log("token", token)
-    //       setAuth(true);
-    //       console.log("Local storage", localStorage.getItem("_token"))
-    //     })
-    //   } catch(err){
-    //     console.log(err);
-    //   }
-  
-    // }, [auth, setAuth])

@@ -1,0 +1,14 @@
+.transactions {
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.photo {
+  width: 100px;
+  border-radius: 50%;
+}
+
+.heading {
+  margin-top: 1em;
+}

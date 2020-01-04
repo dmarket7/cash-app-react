@@ -1,0 +1,9 @@
+.payment-container {
+  margin: 5em 30vw 0 0;
+}
+
+@media screen and (max-width: 650px) {
+  .payment-container {
+    margin-right: 1em;
+  }
+}

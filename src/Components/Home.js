@@ -1,23 +1,28 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Redirect } from "react-router-dom";
 import axios from 'axios';
 import AuthContext from './AuthContext';
+// import TransactionsContext from "./TransactionsContext";
+import './Home.css';
+import Payment from './Payment';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001/";
 
 function Home() {
-  const [loading, updateLoading] = useState(true);
-  const [transactions, updateTransactions] = useState([]);
-  // const [loggedIn, updateLoggedIn] = useState(false);
   const [auth, setAuth] = useContext(AuthContext);
+  const [payments, setPayments] = useState([])
 
-  async function getTransactions(_token) {
+  async function getTransactions() {
     try {
       let _token = localStorage.getItem("_token");
+      let username = localStorage.getItem("username");
       console.log("_token", _token);
-      // if(_token) updateLoggedIn(true);
       const transactions = await axios.get(`${BASE_URL}transactions/`, {params: {_token}});
-      console.log("transactions", transactions);
-      // updateTransactions(transactions || []);
+      const user = await axios.get(`${BASE_URL}users/${username}`, {params: {_token}});
+      console.log("user", user.data.user);
+      setPayments(transactions.data.transactions);
+      console.log("payments", payments);
+      setAuth(true);
     } catch(err) {
       console.log(err);
     }
@@ -25,14 +30,17 @@ function Home() {
 
   useEffect(() => {
     getTransactions();
-    updateLoading(false);
-  }, [transactions, updateTransactions]);
+  }, [auth]);
 
   return (
-    loading ? <div>Loading...</div> :
     <div>
-      {auth ? <h1>Search</h1> : null}
-      <h2>Transactions</h2>
+      {auth ? <h1>Cash App</h1> : <Redirect to="/"/>}
+      <h3>All Transactions</h3>
+      <ul className="list-group list-group-flush transactions">
+        {payments ? 
+          payments.map(p => <Payment payment={p} key={p.id}/>) 
+          : null}
+      </ul>
     </div>
   );
 }

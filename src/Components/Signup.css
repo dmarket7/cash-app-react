@@ -1,0 +1,13 @@
+.label-group {
+  text-align: left;
+}
+
+.form-container {
+  margin: 5em 30vw 0 0;
+}
+
+@media screen and (max-width: 480px) {
+  .form-container {
+    margin: 5em 3em 0 0;
+  }
+}

@@ -1,6 +1,10 @@
+* { Box-sizing: Border-box }
+
 .App {
   text-align: center;
   display: flex;
+  justify-content: flex-end;
+  /* align-items: stretch; */
 }
 
 .App-logo {
