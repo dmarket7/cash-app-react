@@ -32,3 +32,14 @@
     padding-top: 1em;
   }
 }
+
+@media screen and (max-width: 360px) {
+  .home-container {
+    min-width: 60px;
+  }
+
+  .payment-btn {
+    width: 85%;
+    padding: 0;
+  }
+}

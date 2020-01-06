@@ -1,9 +1,4 @@
-.home-container {
-  max-width: 80vw;
-}
-
 .transactions {
-  /* width: 80%; */
   display: flex;
   flex-direction: column;
   /* overflow: auto; */

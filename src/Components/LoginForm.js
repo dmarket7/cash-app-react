@@ -11,6 +11,7 @@ function LoginForm() {
   const [auth, setAuth] = useContext(AuthContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [inputError, setInputError] = useState({username: false});
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -25,6 +26,7 @@ function LoginForm() {
       setAuth(true);
     } catch(err){
       console.log(err);
+      setInputError({username: true})
     }
   }
 
@@ -50,6 +52,8 @@ function LoginForm() {
             <label className="my-2">Password</label>
             <input onChange={e => setPassword(e.target.value)} name="password" value={password} type="password" placeholder="Password" className="form-control"/>
           </div>
+          {inputError.username ? <p style={{color: "red"}}>Something went wrong. Try again</p> : null}
+
           <input type="submit" className="btn btn-primary"/>
         </form>
         <h5>Don't have an account?</h5>
