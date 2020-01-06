@@ -1,7 +1,7 @@
 .transactions {
-  width: 80vw;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .photo {
@@ -11,4 +11,14 @@
 
 .heading {
   margin-top: 1em;
+}
+
+@media screen and (max-width: 480px) {
+  .transactions {
+    width: 80vw;
+  }
+
+  .heading {
+    font-size: 24px;
+  }
 }

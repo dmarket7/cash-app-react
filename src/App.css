@@ -3,7 +3,7 @@
 .App {
   text-align: center;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   /* align-items: stretch; */
 }
 
@@ -24,4 +24,10 @@
 
 .App-link {
   color: #09d3ac;
+}
+
+@media screen and (max-width: 480px) {
+  .App {
+    justify-content: flex-end;
+  }
 }
