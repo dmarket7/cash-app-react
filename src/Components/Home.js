@@ -25,6 +25,7 @@ function Home() {
       setPayments(transactions.data.transactions);
       console.log("payments", payments);
       setAuth(true);
+      setLoading(false);
     } catch(err) {
       console.log(err);
     }
@@ -32,7 +33,6 @@ function Home() {
 
   useEffect(() => {
     getTransactions();
-    setLoading(false);
   }, [auth]);
 
   return (
