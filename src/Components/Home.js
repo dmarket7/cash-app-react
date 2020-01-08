@@ -5,12 +5,14 @@ import AuthContext from './AuthContext';
 // import TransactionsContext from "./TransactionsContext";
 import './Home.css';
 import Payment from './Payment';
+import Loading from './Loading';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001/";
 
 function Home() {
   const [auth, setAuth] = useContext(AuthContext);
-  const [payments, setPayments] = useState([])
+  const [payments, setPayments] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   async function getTransactions() {
     try {
@@ -30,17 +32,21 @@ function Home() {
 
   useEffect(() => {
     getTransactions();
+    setLoading(false);
   }, [auth]);
 
   return (
     <div>
       {auth ? <h1>Cash App</h1> : <Redirect to="/"/>}
       <h3>All Transactions</h3>
+      {loading ? <Loading /> 
+      :
       <ul className="list-group list-group-flush transactions">
         {payments ? 
           payments.map(p => <Payment payment={p} key={p.id}/>) 
           : null}
       </ul>
+      }
     </div>
   );
 }
