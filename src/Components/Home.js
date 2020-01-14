@@ -18,12 +18,10 @@ function Home() {
     try {
       let _token = localStorage.getItem("_token");
       let username = localStorage.getItem("username");
-      console.log("_token", _token);
       const transactions = await axios.get(`${BASE_URL}transactions/`, {params: {_token}});
       const user = await axios.get(`${BASE_URL}users/${username}`, {params: {_token}});
       console.log("user", user.data.user);
       setPayments(transactions.data.transactions);
-      console.log("payments", payments);
       setAuth(true);
       setLoading(false);
     } catch(err) {
