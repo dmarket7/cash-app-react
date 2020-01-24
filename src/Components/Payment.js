@@ -5,10 +5,10 @@ function Payment(props) {
   const { id, sender, receiver, amt, date } = props.payment;
 
   return (
-    <li className="list-group-item payment">
-      <span>{sender}</span>
-      <span>paid</span>
-      <span>{receiver}</span>
+    <li className="payment">
+      <span className="name">{sender}</span>
+      <span>paid -></span>
+      <span className="name">{receiver}</span>
       <span>{`$${amt}`}</span>
     </li>
   );
