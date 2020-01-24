@@ -4,6 +4,7 @@ import axios from 'axios';
 import AuthContext from './AuthContext';
 import UserContext from "./UserContext";
 import './SendPayment.css';
+import Loading from "./Loading";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001/";
 
@@ -16,6 +17,7 @@ function SendPayment(props) {
   const [receiver, setReceiver] = useState("");
   const [amount, setAmount] = useState("");
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   async function getUsers() {
     try {
@@ -29,6 +31,7 @@ function SendPayment(props) {
       const user = await axios.get(`${BASE_URL}users/${username}`, {params: {_token}});
       setCurrentUser(user.data.user);
       setAuth(true);
+      setLoading(false);
     } catch(err) {
       console.error(err);
     }
@@ -57,6 +60,7 @@ function SendPayment(props) {
       {currentUser ? <h2 className="text-success">${currentUser.wallet}</h2> : null}
       <br></br>
       <h2>Send Payment</h2>
+      {loading ? <Loading /> : null}
       <form
         className="form-group"
         onSubmit={e => {

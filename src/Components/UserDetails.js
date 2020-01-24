@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Redirect, Link } from "react-router-dom";
 import AuthContext from "./AuthContext";
 import Payment from "./Payment";
+import Loading from "./Loading";
 import './UserDetails.css';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001/";
@@ -42,7 +43,7 @@ function UserDetails(props) {
           <ul className="list-group list-group-flush transactions">
             {userState.sent_payments.map(p => <Payment payment={p} key={p.id}/>)}
           </ul>
-        : <p>None</p>
+        : <Loading />
         }
         <h2 className="heading">Payments Received</h2>
         {userState.received_payments ?
