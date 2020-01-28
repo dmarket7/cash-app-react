@@ -21,12 +21,12 @@ function Nav() {
       {auth 
       ? 
         <div className='nav-container'>
-          <div>
+          <div className="nav-item">
             <h1><Link to={`/users/${username}`}><i className="fas fa-wallet bg-transparent text-white"></i></Link></h1>
             <h5 className="text-white">Wallet</h5>
           </div>
-          <Link className="bg-transparent text-success" to="/send"><button className="btn btn-light payment-btn">Send $$</button></Link>
-          <div>
+          <Link className="bg-transparent text-success nav-item" to="/send"><button className="btn btn-light payment-btn">Send $$</button></Link>
+          <div className="nav-item">
             <h1 onClick={logout}><Link to="/"><i className="fas fa-power-off bg-transparent text-white"></i></Link></h1>
             <h5 className="text-white">Logout</h5>
           </div>

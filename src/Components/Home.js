@@ -34,7 +34,7 @@ function Home() {
   }, [auth]);
 
   return (
-    <div>
+    <div className="all-transactions">
       {auth ? <h1>Cash App</h1> : <Redirect to="/"/>}
       <h3>All Transactions</h3>
       {loading ? <Loading /> 

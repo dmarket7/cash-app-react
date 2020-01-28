@@ -1,3 +1,7 @@
+.all-transactions {
+  overflow-x: hidden;
+}
+
 .transactions {
   display: flex;
   flex-direction: column;
