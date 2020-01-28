@@ -1,14 +1,14 @@
 .home-container {
-  width: 17vw;
-  min-width: 75px;
+  width: 100%;
+  /* min-width: 75px; */
   height: 100vh;
   background-color: limegreen;
   padding-top: 5em;
-  display: block;
+  
   overflow: hidden;
-  position: fixed;
-  top: 0;
-  left: 0;
+  /* position: fixed; */
+  /* top: 0; */
+  /* left: 0; */
   /* flex-direction: column; */
   /* justify-content: center; */
 }

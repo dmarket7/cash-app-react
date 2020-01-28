@@ -2,8 +2,9 @@
 
 .App {
   text-align: center;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  /* justify-content: center; */
   /* align-items: stretch; */
 }
 
@@ -11,7 +12,7 @@
   height: 40vmin;
 }
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -24,10 +25,10 @@
 
 .App-link {
   color: #09d3ac;
-}
+} */
 
 @media screen and (max-width: 480px) {
   .App {
-    justify-content: flex-end;
+    /* justify-content: flex-end; */
   }
 }

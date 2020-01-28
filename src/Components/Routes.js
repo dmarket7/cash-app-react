@@ -9,21 +9,19 @@ import SendPayment from "./SendPayment";
 function Routes() {
 
   return (
-    <div className='routes-container'>
-      <Switch >
-        <Route exact path="/" 
-          render={() => <Login />}/>
-        <Route exact path="/users/:username" 
-          render={routeProps => <UserDetails {...routeProps}/>}/>
-        <Route exact path="/signup"
-          render={() => <Signup />}/>
-        <Route exact path="/send"
-          render={routeProps => <SendPayment {...routeProps}/>}/>
-        <Route exact path="/transactions" 
-          render={() => <Home /> }/>
-        <Redirect to="/" />
-      </Switch>
-    </div>
+    <Switch >
+      <Route exact path="/" 
+        render={() => <Login />}/>
+      <Route exact path="/users/:username" 
+        render={routeProps => <UserDetails {...routeProps}/>}/>
+      <Route exact path="/signup"
+        render={() => <Signup />}/>
+      <Route exact path="/send"
+        render={routeProps => <SendPayment {...routeProps}/>}/>
+      <Route exact path="/transactions" 
+        render={() => <Home /> }/>
+      <Redirect to="/" />
+    </Switch>
   );
 }
 
