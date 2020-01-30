@@ -10,7 +10,7 @@
   display: flex;
   /* position: fixed; */
   flex-direction: column;
-
+  /* justify-content: flex-start; */
 }
 
 .home-container::-webkit-scrollbar {
@@ -21,8 +21,12 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
   padding-bottom: 5em;
+}
+
+.nav-item {
+  padding: 2em 0;
 }
 
 .payment-btn {
