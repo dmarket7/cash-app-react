@@ -16,11 +16,8 @@ function UserDetails(props) {
   async function getUser() {
     try {
       let _token = localStorage.getItem("_token");
-      console.log("_token", _token);
       const user = await axios.get(`${BASE_URL}users/${username}`, {params: {_token}});
-      // console.log("user", user.data.user);
       setUserState(user.data.user);
-      console.log("User", userState)
     } catch(err) {
       console.log(err);
     }
@@ -28,6 +25,7 @@ function UserDetails(props) {
 
   useEffect(() => {
     getUser();
+    setAuth(true);
   }, [auth]);
 
   return (
@@ -41,14 +39,14 @@ function UserDetails(props) {
         <h2 className="heading">Payments Sent</h2>
         {userState.sent_payments ?
           <ul className="list-group list-group-flush transactions">
-            {userState.sent_payments.map(p => <Payment payment={p} key={p.id}/>)}
+            {userState.sent_payments.map(p => <Link to={`/transactions/${p.id}`} key={p.id}><Payment payment={p}/></Link>)}
           </ul>
         : <Loading />
         }
         <h2 className="heading">Payments Received</h2>
         {userState.received_payments ?
           <ul className="list-group list-group-flush transactions">
-            {userState.received_payments.map(p => <Payment payment={p} key={p.id}/>)}
+            {userState.received_payments.map(p => <Link to={`/transactions/${p.id}`} key={p.id}><Payment payment={p}/></Link>)}
           </ul>
         : <p>None</p>
         }

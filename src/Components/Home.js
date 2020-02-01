@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import axios from 'axios';
 import AuthContext from './AuthContext';
 // import TransactionsContext from "./TransactionsContext";
@@ -17,10 +17,9 @@ function Home() {
   async function getTransactions() {
     try {
       let _token = localStorage.getItem("_token");
-      let username = localStorage.getItem("username");
+      // let username = localStorage.getItem("username");
       const transactions = await axios.get(`${BASE_URL}transactions/`, {params: {_token}});
-      const user = await axios.get(`${BASE_URL}users/${username}`, {params: {_token}});
-      console.log("user", user.data.user);
+      // const user = await axios.get(`${BASE_URL}users/${username}`, {params: {_token}});
       setPayments(transactions.data.transactions);
       setAuth(true);
       setLoading(false);
@@ -30,7 +29,11 @@ function Home() {
   }
 
   useEffect(() => {
+    const abortController = new AbortController();
     getTransactions();
+    return () => {
+      abortController.abort();
+    }
   }, [auth]);
 
   return (
@@ -41,7 +44,7 @@ function Home() {
       :
       <ul className="list-group list-group-flush transactions">
         {payments ? 
-          payments.map(p => <Payment payment={p} key={p.id}/>) 
+          payments.map(p => <Link to={`/transactions/${p.id}`} key={p.id}><Payment payment={p}/></Link>) 
           : null}
       </ul>
       }

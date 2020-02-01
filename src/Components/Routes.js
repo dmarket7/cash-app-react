@@ -5,6 +5,7 @@ import Login from "./Login";
 import Signup from "./Signup";
 import UserDetails from "./UserDetails";
 import SendPayment from "./SendPayment";
+import PaymentDetail from "./PaymentDetail";
 
 function Routes() {
 
@@ -18,6 +19,8 @@ function Routes() {
         render={() => <Signup />}/>
       <Route exact path="/send"
         render={routeProps => <SendPayment {...routeProps}/>}/>
+      <Route exact path="/transactions/:id" 
+        render={routeProps => <PaymentDetail {...routeProps}/> }/>
       <Route exact path="/transactions" 
         render={() => <Home /> }/>
       <Redirect to="/" />
