@@ -39,8 +39,8 @@ function PaymentDetail(props) {
     loading ? <Loading /> :
     <div>
       <h1>PaymentDetail</h1><br></br>
-      <h4>Payment Amount: {payment.amt}</h4>
-      <h4>From: {payment.sender} To: --> {payment.receiver}</h4>
+      <h4>Payment Amount: <span className="amount">${payment.amt}</span></h4>
+      <h4>From: <span className="user">{payment.sender}</span> To: --> <span className="user">{payment.receiver}</span></h4>
       <h4>Sent On: {payment.formatDate}</h4>
     </div>
   );
